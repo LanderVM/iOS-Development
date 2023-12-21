@@ -9,14 +9,35 @@ import SwiftUI
 
 struct ParkingAppView: View {
     @ObservedObject var viewModel: ParkingViewModel
+    @State private var selectedFilter: FilterOption = .name
+
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible())], spacing: 16) {
-                ForEach(viewModel.parkings, id: \.name) { parking in
-                    ParkingCard(parking: parking)
-                }
+        VStack {
+            Text("Parking Gent")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding(.top, 10)
+                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+            
+            Picker("Filter", selection: $selectedFilter) {
+                Text("By Name").tag(FilterOption.name)
+                Text("By Free Spaces").tag(FilterOption.freeSpaces)
             }
-            .padding()
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            .padding(.bottom, 10)
+            .onChange(of: selectedFilter) { newFilter in
+                viewModel.setFilterOption(newFilter)
+            }
+            
+            ScrollView {
+                LazyVStack{
+                    ForEach(viewModel.filteredParkings(), id: \.name) { parking in
+                        ParkingCard(parking: parking)
+                    }
+                }
+                .padding()
+            }
         }
     }
 }
@@ -25,7 +46,6 @@ struct ParkingCard: View {
     let parking: ParkingModel.ParkingInfo
 
     var body: some View {
-        VStack {
             HStack {
                 VStack(alignment: .leading) {
                     Text(parking.name)
@@ -37,12 +57,11 @@ struct ParkingCard: View {
                 }
                 Spacer()
                 OccupiedView(parking: parking)
-            }
         }
         .padding()
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(radius: 5)
+        .shadow(radius: 3)
         .onTapGesture {
             parking.navigateToAbout()
         }
@@ -55,13 +74,13 @@ struct OccupiedView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("\(parking.occupation)")
+                Text("\(parking.availableSpaces)")
                     .foregroundColor(.green)
                 Text("/")
                 Text("\(parking.totalCapacity)")
             }
 
-            ProgressView(value: Float(parking.occupation),
+            ProgressView(value: Float(parking.availableSpaces),
                          total: Float(parking.totalCapacity))
                 .progressViewStyle(LinearProgressViewStyle(tint: .green))
                 .frame(height: 10)
