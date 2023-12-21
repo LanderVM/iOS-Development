@@ -11,7 +11,7 @@ import SwiftUI
 struct Parking_GentApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ParkingAppView()
         }
     }
 }

@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10D6993F2B333F1400A05990 /* ParkingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D6993E2B333F1400A05990 /* ParkingModel.swift */; };
+		10D699412B34536000A05990 /* ParkingViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D699402B34536000A05990 /* ParkingViewmodel.swift */; };
 		10E528BC2B33173E002489A5 /* Parking_GentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E528BB2B33173E002489A5 /* Parking_GentApp.swift */; };
-		10E528BE2B33173E002489A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E528BD2B33173E002489A5 /* ContentView.swift */; };
+		10E528BE2B33173E002489A5 /* ParkingAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E528BD2B33173E002489A5 /* ParkingAppView.swift */; };
 		10E528C02B331741002489A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10E528BF2B331741002489A5 /* Assets.xcassets */; };
 		10E528C32B331741002489A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10E528C22B331741002489A5 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10D6993E2B333F1400A05990 /* ParkingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingModel.swift; sourceTree = "<group>"; };
+		10D699402B34536000A05990 /* ParkingViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewmodel.swift; sourceTree = "<group>"; };
 		10E528B82B33173E002489A5 /* Parking Gent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parking Gent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E528BB2B33173E002489A5 /* Parking_GentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parking_GentApp.swift; sourceTree = "<group>"; };
-		10E528BD2B33173E002489A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		10E528BD2B33173E002489A5 /* ParkingAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingAppView.swift; sourceTree = "<group>"; };
 		10E528BF2B331741002489A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10E528C22B331741002489A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,9 +56,11 @@
 			isa = PBXGroup;
 			children = (
 				10E528BB2B33173E002489A5 /* Parking_GentApp.swift */,
-				10E528BD2B33173E002489A5 /* ContentView.swift */,
+				10E528BD2B33173E002489A5 /* ParkingAppView.swift */,
 				10E528BF2B331741002489A5 /* Assets.xcassets */,
 				10E528C12B331741002489A5 /* Preview Content */,
+				10D6993E2B333F1400A05990 /* ParkingModel.swift */,
+				10D699402B34536000A05990 /* ParkingViewmodel.swift */,
 			);
 			path = "Parking Gent";
 			sourceTree = "<group>";
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10E528BE2B33173E002489A5 /* ContentView.swift in Sources */,
+				10E528BE2B33173E002489A5 /* ParkingAppView.swift in Sources */,
+				10D699412B34536000A05990 /* ParkingViewmodel.swift in Sources */,
+				10D6993F2B333F1400A05990 /* ParkingModel.swift in Sources */,
 				10E528BC2B33173E002489A5 /* Parking_GentApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
