@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ParkingAppView: View {
-    var viewModel: ParkingViewmodel = ParkingViewmodel()
-
+    @ObservedObject var viewModel: ParkingViewModel
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible())], spacing: 16) {
@@ -73,6 +72,8 @@ struct OccupiedView: View {
 
 struct ParkingAppView_Previews: PreviewProvider {
     static var previews: some View {
-        ParkingAppView()
+        ParkingAppView(viewModel: ParkingViewModel())
     }
 }
+
+

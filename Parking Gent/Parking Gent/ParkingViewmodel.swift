@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ParkingViewmodel {
+class ParkingViewModel: ObservableObject {
     private static let parkingInfoArray = [
         (name: "Vrijdagmarkt", description: "Ondergrondse parkeergarage Vrijdagmarkt in Gent", occupation: 94, totalCapacity: 595),
         (name: "Savaanstraat", description: "Ondergrondse parkeergarage Savaanstraat in Gent", occupation: 64, totalCapacity: 530),
@@ -32,7 +32,7 @@ class ParkingViewmodel {
         })
     }
     
-    private var model = createParkingModel()
+    @Published private var model = createParkingModel()
     
     var parkings: Array<ParkingModel.ParkingInfo> {
         return model.parkings
