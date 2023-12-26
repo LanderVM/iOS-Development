@@ -8,7 +8,27 @@
 import SwiftUI
 
 class ParkingViewModel: ObservableObject {
-    @Published private var model: ParkingModel
+    @Published private var model: ParkingModel{
+        didSet{
+            autosave()
+        }
+    }
+    private let autosaveURL: URL = URL.documentsDirectory.appendingPathComponent("Autosaved.parkingGent")
+    
+    private func autosave(){
+        save(to: autosaveURL)
+        print("autosaved to \(autosaveURL)")
+    }
+    
+    private func save(to url: URL){
+        do {
+            let data = try model.json()
+            try data.write(to: url)
+        } catch let error {
+            print("Error while saving: \(error.localizedDescription)")
+        }
+    }
+    
     @Published var isLoading: Bool = false
     private let apiService: ParkingAPIService
 
@@ -43,6 +63,10 @@ class ParkingViewModel: ObservableObject {
                     self?.model = ParkingModel(parkingInfos)
                 case .failure(let error):
                     print("Error fetching parking data: \(error)")
+                    if let data = try? Data(contentsOf: self?.autosaveURL ?? URL(fileURLWithPath: "")),
+                    let autosavedData = try? ParkingModel(json: data) {
+                        self?.model = autosavedData
+                    }
                 }
             }
         }
@@ -69,7 +93,7 @@ class ParkingViewModel: ObservableObject {
     }
 }
 
-enum FilterOption {
+enum FilterOption: Codable {
     case name
     case freeSpaces
 }
