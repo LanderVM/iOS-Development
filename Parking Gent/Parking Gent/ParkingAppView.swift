@@ -30,20 +30,25 @@ struct ParkingAppView: View {
                 viewModel.setFilterOption(newFilter)
             }
             
+                        
             ScrollView {
-                LazyVStack{
-                    if viewModel.isLoading {
+                LazyVStack {
+                    switch viewModel.apiResponse {
+                    case .loading:
                         ProgressView("Loading...")
+                    case .success(let parkings):
+                        ForEach(parkings, id: \.name) { parking in
+                            ParkingCardView(parking: parking)
+                        }
+                    case .failure:
+                        Text("Failed to load parking data")
+                        }
                     }
-                    ForEach(viewModel.filteredParkings(), id: \.name) { parking in
-                        ParkingCardView(parking: parking)
-                    }
+                    .padding()
                 }
-                .padding()
             }
         }
     }
-}
 
 struct ParkingAppView_Previews: PreviewProvider {
     static var previews: some View {

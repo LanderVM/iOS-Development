@@ -8,21 +8,20 @@
 import SwiftUI
 
 class ParkingViewModel: ObservableObject {
-    @Published private var model: ParkingModel
-    @Published var isLoading: Bool = false
+    @Published private var model = ParkingModel([])
+    @Published var apiResponse: APIResponse<[ParkingModel.ParkingInfo]> = .loading
+
     private let apiService: ParkingAPIService
 
     init(apiService: ParkingAPIService = ParkingAPIService()) {
         self.apiService = apiService
-        self.model = ParkingModel([])
         fetchParkingData()
     }
 
     func fetchParkingData() {
-        isLoading = true
+        apiResponse = .loading
         apiService.fetchParkingData { [weak self] result in
             DispatchQueue.main.async {
-                self?.isLoading = false
                 switch result {
                 case .success(let parkingData):
                     let parkingInfos = parkingData.map { apiParkingInfo -> ParkingModel.ParkingInfo in
@@ -41,8 +40,9 @@ class ParkingViewModel: ObservableObject {
                         )
                     }
                     self?.model = ParkingModel(parkingInfos)
+                    self?.apiResponse = .success(parkingInfos)
                 case .failure(let error):
-                    print("Error fetching parking data: \(error)")
+                    self?.apiResponse = .failure(error)
                 }
             }
         }

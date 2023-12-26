@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum APIResponse<T> {
+    case loading
+    case success(T)
+    case failure(Error)
+}
+
 class ParkingAPIService {
     let baseUrl = "https://data.stad.gent/api/explore/v2.1/catalog/datasets/bezetting-parkeergarages-real-time/records"
     
