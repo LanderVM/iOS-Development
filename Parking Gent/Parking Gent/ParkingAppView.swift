@@ -32,6 +32,9 @@ struct ParkingAppView: View {
             
             ScrollView {
                 LazyVStack{
+                    if viewModel.isLoading {
+                        ProgressView("Loading...")
+                    }
                     ForEach(viewModel.filteredParkings(), id: \.name) { parking in
                         ParkingCardView(parking: parking)
                     }

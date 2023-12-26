@@ -8,8 +8,13 @@
 import Foundation
 
 struct ParkingAPIResponse: Codable {
-    let total_count: Int
+    let totalCount: Int
     let results: [ParkingInfo]
+    
+    enum CodingKeys: String, CodingKey {
+        case totalCount = "total_count"
+        case results
+    }
     
     struct ParkingInfo: Codable {
         let name: String
