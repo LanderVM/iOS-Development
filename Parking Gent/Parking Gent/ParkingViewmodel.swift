@@ -18,7 +18,7 @@ class ParkingViewModel: ObservableObject {
         (name: "Ramen", description: "Ondergrondse parkeergarage Ramen in Gent", availableSpaces: 80, totalCapacity: 250),
         (name: "Tolhuis", description: "Ondergrondse parkeergarage Tolhuis in Gent", availableSpaces: 61, totalCapacity: 150),
         (name: "Sint-Pietersplein", description: "? parkeergarage Sint-Pietersplein in Gent", availableSpaces: 59, totalCapacity: 683),
-        (name: "Getouw", description: "Bovengrondse parkeergarage Het Getouw in Gent", availableSpaces: 2, totalCapacity: 350)
+        (name: "Getouw", description: "Bovengrondse parkeergarage Het Getouw in Gent", availableSpaces: 40, totalCapacity: 350)
     ]
     
     private static func createParkingModel() -> ParkingModel {
@@ -53,7 +53,6 @@ class ParkingViewModel: ObservableObject {
         print("Setting filter option to \(option)")
         model.filterOption = option
     }
-
 }
 
 enum FilterOption {
