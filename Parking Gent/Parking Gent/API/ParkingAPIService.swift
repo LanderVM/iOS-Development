@@ -8,7 +8,7 @@
 import Foundation
 
 class ParkingAPIService {
-    let baseUrl = "https://data.stad.gent/api/explore/v2.1/catalog/datasets/bezetting-parkeergarages-real-time/records"
+    let baseUrl = "https://data.stad.gent/api/explore/v2.1/catalog/datasets/bezetting-parkeergarages-real-time/records?limit=20"
     
     func fetchParkingData(completion: @escaping (Result<[ParkingAPIResponse.ParkingInfo], Error>) -> Void) {
         guard let url = URL(string: baseUrl) else {
