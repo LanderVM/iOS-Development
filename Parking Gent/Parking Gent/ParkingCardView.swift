@@ -71,9 +71,6 @@ struct OccupiedView: View {
 struct ParkingCardView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            ParkingCardView(parking: ParkingInfo(name: "Vrijdagmarkt", description: "Ondergrondse parkeergarage Vrijdagmarkt in Gent", availableSpaces: 354, totalCapacity: 595))
-            ParkingCardView(parking: ParkingInfo(name: "Ramen", description: "Ondergrondse parkeergarage Ramen in Gent", availableSpaces: 80, totalCapacity: 250))
-            ParkingCardView(parking: ParkingInfo(name: "B-Park Gent Sint-Pieters", description: "Ondergrondse parkeergarage NMBS Gent-Sint-Pieters in Gent", availableSpaces: 47, totalCapacity: 500))
         }
     }
 }

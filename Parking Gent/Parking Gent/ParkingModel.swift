@@ -8,10 +8,10 @@
 import Foundation
 
 struct ParkingModel {
-    private(set) var parkings: Array<ParkingInfo>
+    private(set) var parkings: [ParkingInfo]
     var filterOption: FilterOption = .name
     
-    init(_ parkings: Array<ParkingInfo>) {
+    init(_ parkings: [ParkingInfo]) {
         self.parkings = parkings
     }
     
@@ -20,7 +20,16 @@ struct ParkingModel {
         let description: String
         let availableSpaces: Int
         let totalCapacity: Int
-        
+        let lastUpdate: String
+        let isOpenNow: Bool
+        let urlLinkAddress: String
+        let location: Location
+
+        struct Location {
+            let latitude: Double
+            let longitude: Double
+        }
+
         func navigateToAbout() {
             print("Selected parking: \(name)")
         }
