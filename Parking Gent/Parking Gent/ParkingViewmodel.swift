@@ -8,34 +8,24 @@
 import SwiftUI
 
 class ParkingViewModel: ObservableObject {
-    @Published private var model: ParkingModel{
-        didSet{
-            autosave()
-        }
-    }
-    private let autosaveURL: URL = URL.documentsDirectory.appendingPathComponent("Autosaved.parkingGent")
-    
-    private func autosave(){
-        save(to: autosaveURL)
-        print("autosaved to \(autosaveURL)")
-    }
-    
-    private func save(to url: URL){
-        do {
-            let data = try model.json()
-            try data.write(to: url)
-        } catch let error {
-            print("Error while saving: \(error.localizedDescription)")
-        }
-    }
-    
+    @Published private var model: ParkingModel
     @Published var isLoading: Bool = false
     private let apiService: ParkingAPIService
+    private let autosaveURL: URL = URL.documentsDirectory.appendingPathComponent("Autosaved.parkingGent")
 
     init(apiService: ParkingAPIService = ParkingAPIService()) {
         self.apiService = apiService
         self.model = ParkingModel([])
         fetchParkingData()
+    }
+    
+    private func saveModel(){
+        do {
+            let data = try model.json()
+            try data.write(to: autosaveURL)
+        } catch let error {
+            print("Error while saving: \(error.localizedDescription)")
+        }
     }
 
     func fetchParkingData() {
@@ -61,6 +51,7 @@ class ParkingViewModel: ObservableObject {
                         )
                     }
                     self?.model = ParkingModel(parkingInfos)
+                    self?.saveModel()
                 case .failure(let error):
                     print("Error fetching parking data: \(error)")
                     if let data = try? Data(contentsOf: self?.autosaveURL ?? URL(fileURLWithPath: "")),
@@ -79,16 +70,13 @@ class ParkingViewModel: ObservableObject {
     func filteredParkings() -> [ParkingModel.ParkingInfo] {
         switch model.filterOption {
         case .name:
-            print("Sort by name")
             return model.parkings.sorted(by: { $0.name < $1.name })
         case .freeSpaces:
-            print("Sort by freespace")
             return model.parkings.sorted(by: { $0.availableSpaces > $1.availableSpaces })
         }
     }
     
     func setFilterOption(_ option: FilterOption) {
-        print("Setting filter option to \(option)")
         model.filterOption = option
     }
 }

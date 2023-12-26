@@ -41,12 +41,12 @@ struct OccupiedView: View {
         let ratio = Double(a) / Double(tot)
         
         switch ratio {
-        case 0.50...1.0:
-            return Color.green
+        case ..<0.2:
+            return Color.red
         case 0.2..<0.5:
             return Color.orange
         default:
-            return Color.red
+            return Color.green
         }
     }
 
@@ -70,7 +70,43 @@ struct OccupiedView: View {
 
 struct ParkingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack{
+        let sampleParkings = [
+            ParkingInfo(
+                name: "Savaanstraat",
+                description: "Ondergrondse parkeergarage Savaanstraat in Gent",
+                availableSpaces: 150,
+                totalCapacity: 200,
+                lastUpdate: "2023-12-26T23:26:02+01:00",
+                isOpenNow: true,
+                urlLinkAddress: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-savaanstraat",
+                location: ParkingInfo.Location(latitude: 51.04877362543108, longitude: 3.7234627726667133)
+            ),
+            ParkingInfo(
+                name: "Vrijdagmarkt",
+                description: "Ondergrondse parkeergarage Vrijdagmarkt in Gent",
+                availableSpaces: 23,
+                totalCapacity: 595,
+                lastUpdate: "2023-12-26T23:30:36+01:00",
+                isOpenNow: true,
+                urlLinkAddress: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-vrijdagmarkt",
+                location: ParkingInfo.Location(latitude: 51.05713405953412, longitude: 3.726071777876147)
+            ),
+            ParkingInfo(
+                name: "Sint-Michiels",
+                description: "Ondergrondse parkeergarage Sint-Michiels in Gent",
+                availableSpaces: 202,
+                totalCapacity: 451,
+                lastUpdate: "2023-12-26T23:29:42+01:00",
+                isOpenNow: true,
+                urlLinkAddress: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-sint-michiels",
+                location: ParkingInfo.Location(latitude: 51.05311004768356, longitude: 3.719727740000235)
+            )
+        ]
+        return VStack{
+            ForEach(sampleParkings, id: \.name) { parking in
+                ParkingCardView(parking: parking)
+                .padding()
+            }
         }
     }
 }
