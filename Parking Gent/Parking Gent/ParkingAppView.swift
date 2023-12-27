@@ -12,35 +12,34 @@ struct ParkingAppView: View {
     @State private var selectedFilter: FilterOption = .name
 
     var body: some View {
-        VStack {
-            Text("Parking Gent")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 10)
-                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            
-            Picker("Filter", selection: $selectedFilter) {
-                Text("By Name").tag(FilterOption.name)
-                Text("By Free Spaces").tag(FilterOption.freeSpaces)
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding(.horizontal)
-            .padding(.bottom, 10)
-            .onChange(of: selectedFilter) { newFilter in
-                viewModel.setFilterOption(newFilter)
-            }
-            
-            ScrollView {
-                LazyVStack{
-                    if viewModel.isLoading {
-                        ProgressView("Loading...")
-                    }
-                    ForEach(viewModel.filteredParkings(), id: \.name) { parking in
-                        ParkingCardView(parking: parking)
-                    }
+        NavigationView{
+            VStack(alignment: .center) {
+                
+                Picker("Filter", selection: $selectedFilter) {
+                    Text("By Name").tag(FilterOption.name)
+                    Text("By Free Spaces").tag(FilterOption.freeSpaces)
                 }
-                .padding()
-            }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal)
+                .padding(.bottom, 10)
+                .onChange(of: selectedFilter) { newFilter in
+                    viewModel.setFilterOption(newFilter)
+                }
+                
+                ScrollView {
+                    LazyVStack{
+                        if viewModel.isLoading {
+                            ProgressView("Loading...")
+                        }
+                        ForEach(viewModel.filteredParkings(), id: \.name) { parking in
+                            NavigationLink(destination: ParkingDetailView(parking: parking)){
+                                ParkingCardView(parking: parking)
+                            }
+                        }
+                    }
+                    .padding()
+                }
+            }.navigationBarTitle("Parking Gent")
         }
     }
 }

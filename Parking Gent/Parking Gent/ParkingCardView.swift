@@ -28,9 +28,6 @@ struct ParkingCardView: View {
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 3)
-        .onTapGesture {
-            parking.navigateToAbout()
-        }
     }
 }
 
@@ -53,22 +50,22 @@ struct OccupiedView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("\(parking.availableSpaces)")
-                    .foregroundColor(occupancyColor(a: parking.availableSpaces, tot: parking.totalCapacity))
+                Text("\(parking.availableCapacity)")
+                    .foregroundColor(occupancyColor(a: parking.availableCapacity, tot: parking.totalCapacity))
                 Text("/")
                 Text("\(parking.totalCapacity)")
             }
 
-            ProgressView(value: Float(parking.availableSpaces),
+            ProgressView(value: Float(parking.availableCapacity),
                          total: Float(parking.totalCapacity))
-            .progressViewStyle(LinearProgressViewStyle(tint: occupancyColor(a: parking.availableSpaces, tot: parking.totalCapacity)))
+            .progressViewStyle(LinearProgressViewStyle(tint: occupancyColor(a: parking.availableCapacity, tot: parking.totalCapacity)))
                 .frame(height: 10)
 
         }.frame(width: 130)
     }
 }
 
-struct ParkingCardView_Previews: PreviewProvider {
+/*struct ParkingCardView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleParkings = [
             ParkingInfo(
@@ -110,3 +107,4 @@ struct ParkingCardView_Previews: PreviewProvider {
         }
     }
 }
+*/

@@ -25,7 +25,6 @@ struct ParkingAPIResponse: Codable {
         let operatorinformation: String
         let freeparking: Int
         let urllinkaddress: String
-        let occupancytrend: String
         let locationanddimension: String
         let location: Location
     }

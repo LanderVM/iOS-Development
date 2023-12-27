@@ -27,12 +27,20 @@ struct ParkingModel: Codable {
     
     struct ParkingInfo: Codable {
         let name: String
-        let description: String
-        let availableSpaces: Int
-        let totalCapacity: Int
         let lastUpdate: String
+        let totalCapacity: Int
+        let availableCapacity: Int
+        let occupation: Int
+        let type: String
+        let description: String
+        let id: String
+        let openingtimesDescription: String
         let isOpenNow: Bool
+        let temporaryClosed: Bool
+        let operatorInformation: String
+        let isFreeParking: Bool
         let urlLinkAddress: String
+        let locationAndDimension: String
         let location: Location
 
         struct Location: Codable {

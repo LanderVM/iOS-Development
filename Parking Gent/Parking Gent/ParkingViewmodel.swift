@@ -38,12 +38,20 @@ class ParkingViewModel: ObservableObject {
                     let parkingInfos = parkingData.map { apiParkingInfo -> ParkingModel.ParkingInfo in
                         return ParkingModel.ParkingInfo(
                             name: apiParkingInfo.name,
-                            description: apiParkingInfo.description,
-                            availableSpaces: apiParkingInfo.availablecapacity,
-                            totalCapacity: apiParkingInfo.totalcapacity,
                             lastUpdate: apiParkingInfo.lastupdate,
+                            totalCapacity: apiParkingInfo.totalcapacity,
+                            availableCapacity: apiParkingInfo.availablecapacity,
+                            occupation: apiParkingInfo.occupation,
+                            type: apiParkingInfo.type,
+                            description: apiParkingInfo.description,
+                            id: apiParkingInfo.id,
+                            openingtimesDescription: apiParkingInfo.openingtimesdescription,
                             isOpenNow: apiParkingInfo.isopennow == 1,
+                            temporaryClosed: apiParkingInfo.temporaryclosed == 1,
+                            operatorInformation: apiParkingInfo.operatorinformation,
+                            isFreeParking: apiParkingInfo.freeparking == 1,
                             urlLinkAddress: apiParkingInfo.urllinkaddress,
+                            locationAndDimension: apiParkingInfo.locationanddimension,
                             location: ParkingModel.ParkingInfo.Location(
                                 latitude: apiParkingInfo.location.lat,
                                 longitude: apiParkingInfo.location.lon
@@ -72,7 +80,7 @@ class ParkingViewModel: ObservableObject {
         case .name:
             return model.parkings.sorted(by: { $0.name < $1.name })
         case .freeSpaces:
-            return model.parkings.sorted(by: { $0.availableSpaces > $1.availableSpaces })
+            return model.parkings.sorted(by: { $0.availableCapacity > $1.availableCapacity })
         }
     }
     
