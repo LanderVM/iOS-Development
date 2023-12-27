@@ -13,17 +13,22 @@ struct ParkingCardView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(parking.name)
-                        .font(.headline)
-                        .lineLimit(1)
-                        .padding(.bottom, 1)
-                    Text(parking.description)
-                        .font(.caption)
-                }
-                Spacer()
-                OccupiedView(parking: parking)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(parking.name)
+                    .font(.headline)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(1)
+                    .padding(.bottom, 1)
+
+                Text(parking.description)
+                    .font(.caption)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .multilineTextAlignment(.leading)
+            }
+            Spacer()
+            OccupiedView(parking: parking)
         }
         .padding()
         .background(
@@ -33,6 +38,7 @@ struct ParkingCardView: View {
         )
     }
 }
+
 
 struct OccupiedView: View {
     var parking: ParkingInfo

@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct Parking_GentApp: App {
     @StateObject var parkingViewModel = ParkingViewModel()
-    @StateObject var parkingDetailsViewModel = ParkingDetailsViewModel()
     
     var body: some Scene {
         WindowGroup {

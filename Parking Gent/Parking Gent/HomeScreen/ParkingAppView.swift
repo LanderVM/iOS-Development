@@ -13,8 +13,7 @@ struct ParkingAppView: View {
 
     var body: some View {
         NavigationView{
-            VStack(alignment: .center) {
-                
+            VStack{
                 Picker("Filter", selection: $selectedFilter) {
                     Text("By Name").tag(FilterOption.name)
                     Text("By Free Spaces").tag(FilterOption.freeSpaces)
@@ -42,7 +41,7 @@ struct ParkingAppView: View {
                     viewModel.refreshParkingData()
                 }
             }.navigationBarTitle("Parking Gent")
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
