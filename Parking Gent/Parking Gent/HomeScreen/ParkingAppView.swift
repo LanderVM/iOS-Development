@@ -10,6 +10,10 @@ import SwiftUI
 struct ParkingAppView: View {
     @ObservedObject var viewModel: ParkingViewModel
     @State private var selectedFilter: FilterOption = .name
+    
+    init(viewModel: ParkingViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         NavigationView{
@@ -31,7 +35,7 @@ struct ParkingAppView: View {
                             ProgressView("Loading...")
                         }
                         ForEach(viewModel.filteredParkings(), id: \.name) { parking in
-                            NavigationLink(destination: ParkingDetailView(parking: parking)){
+                            NavigationLink(destination: ParkingDetailView(viewModel: ParkingDetailsViewModel(), parking: parking)){
                                 ParkingCardView(parking: parking)
                             }
                         }

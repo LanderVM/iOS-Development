@@ -9,8 +9,13 @@ import SwiftUI
 import MapKit
 
 struct ParkingDetailView: View {
-    @ObservedObject var viewModel: ParkingDetailsViewModel = ParkingDetailsViewModel()
+    @ObservedObject var viewModel: ParkingDetailsViewModel
     var parking: ParkingModel.ParkingInfo
+    
+    init(viewModel: ParkingDetailsViewModel, parking: ParkingModel.ParkingInfo) {
+        self.viewModel = viewModel
+        self.parking = parking
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -65,11 +70,11 @@ struct ParkingDetailView: View {
             }
 
             HStack {
-                Image(systemName: "map")
-                    .foregroundColor(.blue)
                 Button(action: {
                     viewModel.openMapForPlace(parking)
                 }) {
+                Image(systemName: "map")
+                    .foregroundColor(.blue)
                     Text("Open in Maps")
                         .foregroundColor(.blue)
                         .font(.body)
@@ -78,10 +83,8 @@ struct ParkingDetailView: View {
 
             Spacer()
 
-            if let url = URL(string: parking.urlLinkAddress), UIApplication.shared.canOpenURL(url) {
-                Button(action: {
-                    UIApplication.shared.open(url)
-                }) {
+            if let url = URL(string: parking.urlLinkAddress) {
+                Link(destination: url) {
                     HStack {
                         Image(systemName: "link.circle.fill")
                             .foregroundColor(.blue)
