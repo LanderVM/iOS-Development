@@ -38,6 +38,8 @@ struct ParkingAppView: View {
                         }
                     }
                     .padding()
+                }.refreshable {
+                    viewModel.refreshParkingData()
                 }
             }.navigationBarTitle("Parking Gent")
         }

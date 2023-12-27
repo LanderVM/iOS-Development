@@ -85,6 +85,10 @@ class ParkingViewModel: ObservableObject {
     func setFilterOption(_ option: FilterOption) {
         model.filterOption = option
     }
+    
+    func refreshParkingData(){
+        fetchParkingData()
+    }
 }
 
 enum FilterOption: Codable {
