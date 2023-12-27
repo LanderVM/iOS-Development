@@ -13,7 +13,6 @@ struct ParkingModel: Codable {
     
     func json() throws -> Data {
         let encoded = try JSONEncoder().encode(self)
-        print("ParkingGent = \(String(data: encoded, encoding: .utf8) ?? "nil")")
         return encoded
     }
     

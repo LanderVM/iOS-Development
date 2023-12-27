@@ -10,6 +10,7 @@ typealias ParkingInfo = ParkingModel.ParkingInfo
 
 struct ParkingCardView: View {
     let parking: ParkingInfo
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
             HStack {
@@ -25,9 +26,11 @@ struct ParkingCardView: View {
                 OccupiedView(parking: parking)
         }
         .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 3)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(colorScheme == .dark ? Color.black : Color.white)
+                .shadow(color: colorScheme == .dark ? Color.white.opacity(0.2) : Color.black.opacity(0.2), radius: 3)
+        )
     }
 }
 
@@ -54,6 +57,7 @@ struct OccupiedView: View {
                     .foregroundColor(occupancyColor(a: parking.availableCapacity, tot: parking.totalCapacity))
                 Text("/")
                 Text("\(parking.totalCapacity)")
+                    .foregroundColor(Color.blue)
             }
 
             ProgressView(value: Float(parking.availableCapacity),
@@ -65,38 +69,24 @@ struct OccupiedView: View {
     }
 }
 
-/*struct ParkingCardView_Previews: PreviewProvider {
+struct ParkingCardView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleParkings = [
             ParkingInfo(
                 name: "Savaanstraat",
-                description: "Ondergrondse parkeergarage Savaanstraat in Gent",
-                availableSpaces: 150,
-                totalCapacity: 200,
                 lastUpdate: "2023-12-26T23:26:02+01:00",
+                totalCapacity: 200,
+                availableCapacity: 150,
+                occupation: 25,
+                type: "carPark",
+                description: "Ondergrondse parkeergarage Savaanstraat in Gent",
+                id: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-savaanstraat",
+                openingtimesDescription: "24/7",
                 isOpenNow: true,
+                operatorInformation: "Mobiliteitsbedrijf Gent",
+                isFreeParking: false,
                 urlLinkAddress: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-savaanstraat",
                 location: ParkingInfo.Location(latitude: 51.04877362543108, longitude: 3.7234627726667133)
-            ),
-            ParkingInfo(
-                name: "Vrijdagmarkt",
-                description: "Ondergrondse parkeergarage Vrijdagmarkt in Gent",
-                availableSpaces: 23,
-                totalCapacity: 595,
-                lastUpdate: "2023-12-26T23:30:36+01:00",
-                isOpenNow: true,
-                urlLinkAddress: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-vrijdagmarkt",
-                location: ParkingInfo.Location(latitude: 51.05713405953412, longitude: 3.726071777876147)
-            ),
-            ParkingInfo(
-                name: "Sint-Michiels",
-                description: "Ondergrondse parkeergarage Sint-Michiels in Gent",
-                availableSpaces: 202,
-                totalCapacity: 451,
-                lastUpdate: "2023-12-26T23:29:42+01:00",
-                isOpenNow: true,
-                urlLinkAddress: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-sint-michiels",
-                location: ParkingInfo.Location(latitude: 51.05311004768356, longitude: 3.719727740000235)
             )
         ]
         return VStack{
@@ -107,4 +97,4 @@ struct OccupiedView: View {
         }
     }
 }
-*/
+
