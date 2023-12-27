@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ParkingDetailView: View {
+    @ObservedObject var viewModel: ParkingDetailsViewModel = ParkingDetailsViewModel()
     var parking: ParkingModel.ParkingInfo
 
     var body: some View {
@@ -28,16 +30,16 @@ struct ParkingDetailView: View {
             }
 
             HStack {
-                Image(systemName: "square.and.pencil")
-                    .foregroundColor(.orange)
-                Text("Last updated: \(parking.lastUpdate)")
-                    .font(.body)
-            }
-
-            HStack {
                 Image(systemName: parking.isOpenNow ? "lock.open.fill" : "lock.fill")
                     .foregroundColor(parking.isOpenNow ? .green : .red)
                 Text(parking.isOpenNow ? "Open Now" : "Closed")
+                    .font(.body)
+            }
+            
+            HStack {
+                Image(systemName: parking.isFreeParking ? "dollarsign.circle.fill" : "creditcard.fill")
+                    .foregroundColor(parking.isFreeParking ? .green : .red)
+                Text(parking.isFreeParking ? "Free Parking" : "Paid Parking")
                     .font(.body)
             }
 
@@ -47,10 +49,36 @@ struct ParkingDetailView: View {
                 Text("Capacity: \(parking.availableCapacity)/\(parking.totalCapacity)")
                     .font(.body)
             }
+            
+            HStack {
+                Image(systemName: "person.fill")
+                    .foregroundColor(.green)
+                Text("Operator: \(parking.operatorInformation)")
+                    .font(.body)
+            }
+            
+            HStack {
+                Image(systemName: "square.and.pencil")
+                    .foregroundColor(.orange)
+                Text("Last updated: \(viewModel.formattedLastUpdatedTime(parking.lastUpdate))")
+                    .font(.body)
+            }
+
+            HStack {
+                Image(systemName: "map")
+                    .foregroundColor(.blue)
+                Button(action: {
+                    viewModel.openMapForPlace(parking)
+                }) {
+                    Text("Open in Maps")
+                        .foregroundColor(.blue)
+                        .font(.body)
+                }
+            }
 
             Spacer()
 
-            if let url = URL(string: parking.id), UIApplication.shared.canOpenURL(url) {
+            if let url = URL(string: parking.urlLinkAddress), UIApplication.shared.canOpenURL(url) {
                 Button(action: {
                     UIApplication.shared.open(url)
                 }) {
@@ -69,9 +97,10 @@ struct ParkingDetailView: View {
     }
 }
 
+
 struct ParkingDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ParkingDetailView(parking: ParkingInfo(
+        ParkingDetailView(viewModel: ParkingDetailsViewModel(), parking: ParkingInfo(
             name: "Savaanstraat",
             lastUpdate: "2023-12-26T23:26:02+01:00",
             totalCapacity: 200,
@@ -82,23 +111,9 @@ struct ParkingDetailView_Previews: PreviewProvider {
             id: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-savaanstraat",
             openingtimesDescription: "24/7",
             isOpenNow: true,
-            temporaryClosed: false,
             operatorInformation: "Mobiliteitsbedrijf Gent",
             isFreeParking: false,
             urlLinkAddress: "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-savaanstraat",
-            locationAndDimension: """
-                {
-                    "specificAccessInformation": ["inrit"],
-                    "level": "0",
-                    "roadNumber": "?",
-                    "roadName": "Savaanstraat 13\n9000 Gent",
-                    "contactDetailsTelephoneNumber": "Tel.: 09 266 29 40",
-                    "coordinatesForDisplay": {
-                        "latitude": 51.04877362543108,
-                        "longitude": 3.7234627726667133
-                    }
-                }
-            """,
             location: ParkingInfo.Location(latitude: 51.04877362543108, longitude: 3.7234627726667133)
         ))
     }

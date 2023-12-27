@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		107157E42B3C5A27009616F2 /* ParkingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107157E32B3C5A27009616F2 /* ParkingDetailView.swift */; };
+		107157E82B3C7A54009616F2 /* ParkingDetailsViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107157E72B3C7A54009616F2 /* ParkingDetailsViewmodel.swift */; };
 		10D6993F2B333F1400A05990 /* ParkingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D6993E2B333F1400A05990 /* ParkingModel.swift */; };
 		10D699412B34536000A05990 /* ParkingViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D699402B34536000A05990 /* ParkingViewmodel.swift */; };
 		10D699432B371C3000A05990 /* ParkingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D699422B371C3000A05990 /* ParkingCardView.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		107157E32B3C5A27009616F2 /* ParkingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailView.swift; sourceTree = "<group>"; };
+		107157E72B3C7A54009616F2 /* ParkingDetailsViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailsViewmodel.swift; sourceTree = "<group>"; };
 		10D6993E2B333F1400A05990 /* ParkingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingModel.swift; sourceTree = "<group>"; };
 		10D699402B34536000A05990 /* ParkingViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewmodel.swift; sourceTree = "<group>"; };
 		10D699422B371C3000A05990 /* ParkingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingCardView.swift; sourceTree = "<group>"; };
@@ -44,6 +46,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		107157E92B3C7E56009616F2 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				10D699402B34536000A05990 /* ParkingViewmodel.swift */,
+				10D699422B371C3000A05990 /* ParkingCardView.swift */,
+				10D6993E2B333F1400A05990 /* ParkingModel.swift */,
+				10E528BD2B33173E002489A5 /* ParkingAppView.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		107157EA2B3C7E80009616F2 /* DetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				107157E72B3C7A54009616F2 /* ParkingDetailsViewmodel.swift */,
+				107157E32B3C5A27009616F2 /* ParkingDetailView.swift */,
+			);
+			path = DetailScreen;
+			sourceTree = "<group>";
+		};
 		10D699442B3B132C00A05990 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,13 +96,10 @@
 			children = (
 				10D699442B3B132C00A05990 /* API */,
 				10E528BB2B33173E002489A5 /* Parking_GentApp.swift */,
-				10E528BD2B33173E002489A5 /* ParkingAppView.swift */,
+				107157EA2B3C7E80009616F2 /* DetailScreen */,
 				10E528BF2B331741002489A5 /* Assets.xcassets */,
+				107157E92B3C7E56009616F2 /* HomeScreen */,
 				10E528C12B331741002489A5 /* Preview Content */,
-				10D6993E2B333F1400A05990 /* ParkingModel.swift */,
-				10D699402B34536000A05990 /* ParkingViewmodel.swift */,
-				107157E32B3C5A27009616F2 /* ParkingDetailView.swift */,
-				10D699422B371C3000A05990 /* ParkingCardView.swift */,
 			);
 			path = "Parking Gent";
 			sourceTree = "<group>";
@@ -164,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10E528BE2B33173E002489A5 /* ParkingAppView.swift in Sources */,
+				107157E82B3C7A54009616F2 /* ParkingDetailsViewmodel.swift in Sources */,
 				10D699412B34536000A05990 /* ParkingViewmodel.swift in Sources */,
 				10D699432B371C3000A05990 /* ParkingCardView.swift in Sources */,
 				10D6993F2B333F1400A05990 /* ParkingModel.swift in Sources */,

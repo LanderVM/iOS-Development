@@ -21,11 +21,9 @@ struct ParkingAPIResponse: Codable {
         let id: String
         let openingtimesdescription: String
         let isopennow: Int
-        let temporaryclosed: Int
         let operatorinformation: String
         let freeparking: Int
         let urllinkaddress: String
-        let locationanddimension: String
         let location: Location
     }
 

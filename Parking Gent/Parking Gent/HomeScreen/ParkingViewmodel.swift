@@ -47,11 +47,9 @@ class ParkingViewModel: ObservableObject {
                             id: apiParkingInfo.id,
                             openingtimesDescription: apiParkingInfo.openingtimesdescription,
                             isOpenNow: apiParkingInfo.isopennow == 1,
-                            temporaryClosed: apiParkingInfo.temporaryclosed == 1,
                             operatorInformation: apiParkingInfo.operatorinformation,
                             isFreeParking: apiParkingInfo.freeparking == 1,
                             urlLinkAddress: apiParkingInfo.urllinkaddress,
-                            locationAndDimension: apiParkingInfo.locationanddimension,
                             location: ParkingModel.ParkingInfo.Location(
                                 latitude: apiParkingInfo.location.lat,
                                 longitude: apiParkingInfo.location.lon

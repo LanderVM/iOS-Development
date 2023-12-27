@@ -36,20 +36,14 @@ struct ParkingModel: Codable {
         let id: String
         let openingtimesDescription: String
         let isOpenNow: Bool
-        let temporaryClosed: Bool
         let operatorInformation: String
         let isFreeParking: Bool
         let urlLinkAddress: String
-        let locationAndDimension: String
         let location: Location
 
         struct Location: Codable {
             let latitude: Double
             let longitude: Double
-        }
-
-        func navigateToAbout() {
-            print("Selected parking: \(name)")
         }
     }
 }
