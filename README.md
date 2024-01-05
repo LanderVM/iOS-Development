@@ -19,7 +19,7 @@ The Parking Gent App is your go-to mobile application for accessing real-time in
 
 ## Example
 ### Default Mode
-![videoIphone1](https://github.com/LanderVM/iOS-Development/assets/91501339/dfc6e834-73be-480b-a30a-b50351642776)
+![DefaultMode](https://github.com/LanderVM/iOS-Development/assets/91501339/4e3dab0b-8914-4a6d-a794-c0994327aab1)
 
 ### Dark Mode Landscape
-![videoIphone2](https://github.com/LanderVM/iOS-Development/assets/91501339/aa08c2dc-95ee-4bbe-a73b-037c4440fa8f) 
+![DarkModeLandscape](https://github.com/LanderVM/iOS-Development/assets/91501339/6b90c509-0119-43f9-a2a8-a897781fca3e)
